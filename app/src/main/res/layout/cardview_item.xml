@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardItem"
+    android:background="@drawable/card_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="15dp"
+        android:scaleType="centerCrop"
+        android:id="@+id/cardViewProfileImage"
+        android:background="@drawable/nobody"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="4dp"
+        android:layout_below="@+id/cardViewProfileImage"
+        android:id="@+id/relativeLayout">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Content Yazılacak"
+            android:id="@+id/cardViewContent"
+            android:textColor="#000011"
+            android:layout_marginLeft="5dp"
+            android:layout_alignParentTop="true" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:layout_below="@+id/cardViewContent"
+            android:src="@drawable/ic_launcher_background"
+            android:id="@+id/imageContent" />
+
+        <!-- alttaki linear layout maps eklenmesi icin koyulmustur -->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:id="@+id/mapsView"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_below="@id/imageContent"
+            android:layout_alignLeft="@id/imageContent"
+            android:layout_alignStart="@id/imageContent" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="İsim Soyisim"
+        android:id="@+id/cardViewTitle"
+        android:layout_alignTop="@id/cardViewProfileImage"
+        android:layout_toRightOf="@id/cardViewProfileImage"
+        android:layout_toEndOf="@id/cardViewProfileImage" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Tarih"
+        android:id="@+id/cardViewDate"
+        android:textSize="10dp"
+        android:layout_below="@id/cardViewTitle"
+        android:layout_toRightOf="@id/cardViewProfileImage"
+        android:layout_toEndOf="@id/cardViewProfileImage"
+        android:drawableLeft="@drawable/icon_world"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Yer"
+        android:id="@+id/cardViewLocation"
+        android:textSize="10dp"
+        android:layout_below="@id/cardViewDate"
+        android:layout_alignLeft="@id/cardViewDate"
+        android:layout_alignStart="@id/cardViewDate"
+        android:drawableLeft="@drawable/icon_location"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cardViewOptions"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignTop="@id/cardViewTitle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/chevron_down"/>
+
+</RelativeLayout>
