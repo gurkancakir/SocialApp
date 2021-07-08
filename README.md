@@ -6,4 +6,4 @@
 
 ## Slider
 
-![Slider](screenshots/Timeline.png)
+![Slider](screenshots/Slider.png)
