@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.gurkan.socialapp.R;
 import com.gurkan.socialapp.model.Post;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -85,7 +86,10 @@ public class TimelineListViewAdapter extends BaseAdapter {
         if (post.getListContentImage().isEmpty()) {
             imgContent.setVisibility(View.GONE);
         } else {
-            //TODO : resimleri contentte göster
+            System.out.println(post.getListContentImage().get(0));
+            Picasso.with(activity)
+                    .load(post.getListContentImage().get(0))
+                    .into(imgContent);
         }
 
         PopupMenu popupMenu = new PopupMenu(activity, btnOptions);
