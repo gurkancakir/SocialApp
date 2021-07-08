@@ -2,6 +2,7 @@ package com.gurkan.socialapp.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +14,15 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.gurkan.socialapp.R;
 import com.gurkan.socialapp.model.Post;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -85,7 +93,10 @@ public class TimelineListViewAdapter extends BaseAdapter {
         if (post.getListContentImage().isEmpty()) {
             imgContent.setVisibility(View.GONE);
         } else {
-            //TODO : resimleri contentte göster
+            System.out.println(post.getListContentImage().get(0));
+            Picasso.with(activity)
+                    .load(post.getListContentImage().get(0))
+                    .into(imgContent);
         }
 
         PopupMenu popupMenu = new PopupMenu(activity, btnOptions);
@@ -108,6 +119,28 @@ public class TimelineListViewAdapter extends BaseAdapter {
             //TODO: menu islemlerini yap
             return false;
         });
+
+        if (imgContent.getVisibility() != View.GONE) {
+            imgContent.setOnClickListener(v -> {
+                View dialogView = activity.getLayoutInflater().inflate(R.layout.timeline_popup_image_slider, null);
+                SliderLayout slider = dialogView.findViewById(R.id.slider);
+                slider.setPresetTransformer(SliderLayout.Transformer.Stack);
+                slider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+                slider.setCustomAnimation(new DescriptionAnimation());
+                slider.setDuration(100_000); // 100sn
+                for (String imageUrl: post.getListContentImage()) {
+                    TextSliderView textSliderView = new TextSliderView(activity);
+                    textSliderView
+                            .description("Test Açıklama")
+                            .image(imageUrl)
+                            .setScaleType(BaseSliderView.ScaleType.Fit)
+                    .bundle(new Bundle());
+                    textSliderView.getBundle().putString("extra", "Test resim adı");
+                    slider.addSlider(textSliderView);
+                }
+                new AlertDialog.Builder(activity).setView(dialogView).create().show();
+            });
+        }
 
         return rootView;
     }
